@@ -9,11 +9,11 @@ before_action :find_topic, only: [:show, :edit, :update, :destroy]
   end
 
   def new
-    @topic= Topic.new
+    @topic = current_user.topics.build
   end
 
   def create
-    @topic = Topic.new(topic_params)
+    @topic = current_user.topics.build(topic_params)
 
     if @topic.save
       redirect_to @topic
@@ -47,4 +47,3 @@ before_action :find_topic, only: [:show, :edit, :update, :destroy]
     params.require(:topic).permit(:title, :content)
   end
 end
-
