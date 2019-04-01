@@ -33,4 +33,9 @@ group :test do
   gem 'chromedriver-helper'
 end
 
+# Run against the latest stable release
+group :development, :test do
+  gem 'rspec-rails'
+end
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

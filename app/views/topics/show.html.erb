@@ -1,6 +1,20 @@
 <h1><%= @topic.title %></h1>
-<p>p<%= @topic.content %></p>
+  <p>
+    <%= @topic.content %>
+  </p>
+  <div id="comments">
+    <h3>
+      <%= @topic.comments.count %>
+      Comments
+    </h3>
+    <%= render @topic.comments %>
+    <h4>Reply to thread</h4>
+    <%= render "comments/form" %>
+  </div>
+  <br/>
+  <hr/>
+  <br/>
+  <%= link_to "Edit", edit_topic_path(@topic), class: "button" %>
+  <%= link_to "Delete", topic_path(@topic), method: :delete, data: { confirm: "Are you sure you want to do this?" }, class: "button" %>
+  <%= link_to "Home", root_path, class: "button" %>
 
-<%= link_to "Edit", edit_topic_path(@topic) %>
-<%= link_to "Delete", topic_path(@topic), method: :delete, data: { confirm: "A you sure you want do this?"}%>
-<%= link_to "Home", root_path%>
