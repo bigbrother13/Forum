@@ -1,0 +1,6 @@
+<h1><%= @topic.title %></h1>
+<p>p<%= @topic.content %></p>
+
+<%= link_to "Edit", edit_topic_path(@topic) %>
+<%= link_to "Delete", topic_path(@topic), method: :delete, data: { confirm: "A you sure you want do this?"}%>
+<%= link_to "Home", root_path%>
