@@ -16,9 +16,6 @@ gem 'simple_form'
 gem 'devise'
 gem 'bootsnap', '>= 1.1.0', require: false
 
-group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -30,12 +27,10 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
+  gem 'capybara-screenshot'
   gem 'chromedriver-helper'
-end
-
-# Run against the latest stable release
-group :development, :test do
   gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

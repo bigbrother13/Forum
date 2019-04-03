@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
-before_action :find_topic, only: [:show, :edit, :update, :destroy]
-before_action :authenticate_user!, except: [:index, :show]
+  before_action :find_topic, only: %i(show edit update destroy)
+  before_action :authenticate_user!, except: %i(index show)
 
   def index
     @topics = Topic.all.order("created_at DESC")
@@ -17,9 +17,9 @@ before_action :authenticate_user!, except: [:index, :show]
     @topic = current_user.topics.build(topic_params)
 
     if @topic.save
-      redirect_to @topic
+      redirect_to @topic, :notice => '* * * Create success * * *'
     else
-      render 'new'
+      render 'new', :notice => '* * * Not create * * *'
     end
   end
 
@@ -28,14 +28,13 @@ before_action :authenticate_user!, except: [:index, :show]
 
   def update
     if @topic.update(topic_params)
-      redirect_to @topic
+      redirect_to @topic, :notice => '* * * Update success * * *'
     else
-      render 'edit'
+      render 'edit', :notice => '* * * Not update * * *'
     end
   end
 
   def destroy
-    
   end
 
   private
