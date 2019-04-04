@@ -15,6 +15,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'simple_form'
 gem 'devise'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'carrierwave', '~> 1.0'
+gem "mini_magick"
 
 
 group :development do
