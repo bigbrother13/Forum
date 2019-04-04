@@ -1,8 +1,9 @@
-Rails.application.routes.draw do
+ Rails.application.routes.draw do
+  root 'topics#index'
+
   devise_for :users
   resources :topics do
   	resources :comments
   end
-
-  root 'topics#index'
+  resources :users, only: [:show, :edit, :update]
 end

@@ -8,7 +8,7 @@
     </p>
   </div>
   <div class="buttons">
-    <%= link_to "Edit", edit_post_comment_path(comment.post, comment) %>
-    <%= link_to "Delete", [comment.post, comment], method: :delete, data: { confirm: "Are you sure?" } %>
+    <%= link_to "Edit", edit_topic_comment_path(comment.topic, comment) %>
+    <%= link_to "Delete", [comment.topic, comment], method: :delete, data: { confirm: "Are you sure?" } %>
   </div>
 </div>
