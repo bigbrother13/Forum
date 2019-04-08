@@ -1,15 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe 'Topic page', type: :feature do
-  describe 'Visitor' do
-    let!(:topic) { create :topic }
+RSpec.describe 'Forum', type: :feature do
+  let!(:user) { create(:user) }
+
+  describe 'visitor' do
+    let!(:topic) { create :topic, user: user }
 
     it 'can see the Topics page' do
       visit root_path
       expect(page).to have_content('Topic')
     end
 
-    it 'Should create user' do
+    it 'can sign up' do
       visit root_path
       click_link 'Sign Up'
       fill_in 'Email', with: 'user1@example.com'
@@ -18,11 +20,16 @@ RSpec.describe 'Topic page', type: :feature do
       click_button 'Sign up'
       expect(page).to have_content('You have signed up successfully')
     end
+
+    it 'can see posts made by certain user' do
+
+      root_path
+      click_link edit_user_path
+      expect(page).to have_content('Users')
+    end
   end
 
-  describe 'User' do
-    let!(:user) { create(:user) }
-
+  describe 'user' do
     it 'Can add a topic' do
       sign_in user
       visit root_path
