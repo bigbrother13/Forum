@@ -34,7 +34,9 @@ class TopicsController < ApplicationController
     end
   end
 
-  def destroy
+   def destroy
+    @topic.destroy
+    redirect_to topics_path
   end
 
   private
@@ -44,6 +46,6 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:title, :content)
+    params.require(:topic).permit(:title, :content, :image)
   end
 end

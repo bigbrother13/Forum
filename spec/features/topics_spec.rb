@@ -21,11 +21,16 @@ RSpec.describe 'Forum', type: :feature do
       expect(page).to have_content('You have signed up successfully')
     end
 
-    it 'can see posts made by certain user' do
+    it 'can see posts made by certain user', js: true do
+      visit root_path
+      click_link user.email
+      expect(page).to have_content("Profile for #{user.email}")
+    end
 
-      root_path
-      click_link edit_user_path
-      expect(page).to have_content('Users')
+    it 'can see one topic', js: true do # <= screenshot
+      visit root_path
+      click_link 'Topic'
+      expect(page).to have_content("Topic")
     end
   end
 
