@@ -17,9 +17,9 @@ class TopicsController < ApplicationController
     @topic = current_user.topics.build(topic_params)
 
     if @topic.save
-      redirect_to @topic, :notice => '* * * Create success * * *'
+      redirect_to @topic, :notice => ' Create success '
     else
-      render 'new', :notice => '* * * Not create * * *'
+      render 'new', :notice => ' Not create '
     end
   end
 
@@ -28,9 +28,9 @@ class TopicsController < ApplicationController
 
   def update
     if @topic.update(topic_params)
-      redirect_to @topic, :notice => '* * * Update success * * *'
+      redirect_to @topic, :notice => ' Update success '
     else
-      render 'edit', :notice => '* * * Not update * * *'
+      render 'edit', :notice => ' Not update '
     end
   end
 

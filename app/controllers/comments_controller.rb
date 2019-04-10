@@ -1,37 +1,42 @@
 class CommentsController < ApplicationController
+before_action :find_topic, only: [ :create, :edit, :update, :destroy ]
+before_action :find_comment, only: [ :edit, :update, :destroy ]
+
   def create
-    @topic = Topic.find(params[:topic_id])
     @comment = @topic.comments.create(params[:comment].permit(:comment))
     @comment.user_id = current_user.id if current_user
     @comment.save
 
     if @comment.save
-      redirect_to topic_path(@topic)
+      redirect_to topic_path(@topic), :notice => ' Create success '
     else
-      render 'new'
+      render 'new', :notice => ' Not create '
     end
   end
 
   def edit
-    @topic = Topic.find(params[:topic_id])
-    @comment = @topic.comments.find(params[:id])
   end
 
   def update
-    @topic = Topic.find(params[:topic_id])
-    @comment = @topic.comments.find(params[:id])
-
     if @comment.update(params[:comment].permit(:comment))
-      redirect_to topic_path(@topic)
+      redirect_to topic_path(@topic), :notice => ' Update success '
     else
-      render 'edit'
+      render 'edit', :notice => ' Not update '
     end
   end
 
   def destroy
-    @topic = Topic.find(params[:topic_id])
-    @comment = @topic.comments.find(params[:id])
     @comment.destroy
-    redirect_to topic_path(@topic)
+    redirect_to topic_path(@topic), :notice => ' Destroy success '
+  end
+
+  private
+
+  def find_topic
+    @topic = Topic.find(params[:topic_id])
+  end
+
+  def find_comment
+    @comment = @topic.comments.find(params[:id])
   end
 end

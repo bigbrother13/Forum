@@ -1,5 +1,8 @@
+
 <h1>Profile for <%= @user.email %></h1>
 
+<% if current_user %>
+	<%= link_to 'Edit', edit_user_path(@user)%>
+<% end %>
 
-<%= link_to 'Edit', edit_user_path(@user)%>
 

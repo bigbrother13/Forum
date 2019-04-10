@@ -1,14 +1,14 @@
-<div class="comment clearfix">
-  <div class="content">
-    <p class="comment_content">
+<div class='comment clearfix'>
+  <div class='content'>
+    <p class='comment_content'>
       <%= comment.comment %>
     </p>
-    <p class="comment_author">
+    <p class='comment_author'>
       <%= comment.user.email %>
     </p>
   </div>
-  <div class="buttons">
-    <%= link_to "Edit", edit_topic_comment_path(comment.topic, comment) %>
-    <%= link_to "Delete", [comment.topic, comment], method: :delete, data: { confirm: "Are you sure?" } %>
+  <div class='buttons'>
+    <%= link_to 'Edit', edit_topic_comment_path(comment.topic, comment) %>
+    <%= link_to 'Delete', [comment.topic, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 </div>

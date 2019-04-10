@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:edit, :update]
-  before_action :check_authoriztion, only: [:edit, :update]
   before_action :set_user
+  before_action :authenticate_user!, except: %i(show)
 
   def show
   end
@@ -18,12 +18,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def check_authoriztion
-    unless current_user.id == params[:id].to_i
-      redirect_to root_url      
-    end
-  end
 
   def find_user
     @user = User.find(params[:id])
