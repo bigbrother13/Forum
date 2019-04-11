@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!, except: %i(index show)
 
   def index
-    @topics = Topic.all.order("created_at DESC")
+    @topics = Topic.all.order('created_at DESC')
   end
 
   def show
@@ -17,9 +17,9 @@ class TopicsController < ApplicationController
     @topic = current_user.topics.build(topic_params)
 
     if @topic.save
-      redirect_to @topic, :notice => ' Create success '
+      redirect_to @topic, notice: 'Topic was created'
     else
-      render 'new', :notice => ' Not create '
+      render :new, error: 'Topic was not created'
     end
   end
 

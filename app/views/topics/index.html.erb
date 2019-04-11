@@ -1,9 +1,12 @@
+<h1>Topics</h1>
 
-<% @topics.each do |topic| %>
-  <h2><%= link_to topic.title, topic %></h2>
-  <p>
-    Published at
-    <%= time_ago_in_words(topic.created_at)%>
-    <%= link_to(topic.user.email, user_path(topic.user)) %>
-  </p>
-<% end %>
+<div class='topics'>
+  <% @topics.each do |topic| %>
+    <div><%= link_to(topic.title, topic_path(topic)) %></div>
+    <div>
+      Published at
+      <%= time_ago_in_words(topic.created_at)%>
+      <%= link_to(topic.user.email, user_path(topic.user)) %>
+    </div>
+  <% end %>
+</div>

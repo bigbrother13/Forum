@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-before_action :find_topic, only: [ :create, :edit, :update, :destroy ]
-before_action :find_comment, only: [ :edit, :update, :destroy ]
+  before_action :find_topic, only: [ :create, :edit, :update, :destroy ]
+  before_action :find_comment, only: [ :edit, :update, :destroy ]
 
   def create
     @comment = @topic.comments.create(params[:comment].permit(:comment))
@@ -8,9 +8,9 @@ before_action :find_comment, only: [ :edit, :update, :destroy ]
     @comment.save
 
     if @comment.save
-      redirect_to topic_path(@topic), :notice => ' Create success '
+      redirect_to topic_path(@topic), notice: 'Comment was created'
     else
-      render 'new', :notice => ' Not create '
+      render :new, notice: 'Comment was not created'
     end
   end
 
