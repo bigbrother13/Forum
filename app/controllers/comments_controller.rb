@@ -1,12 +1,9 @@
 class CommentsController < ApplicationController
-  before_action :find_topic, only: [ :create, :edit, :update, :destroy ]
-  before_action :find_comment, only: [ :edit, :update, :destroy ]
+  before_action :find_topic, only: %i(create edit update destroy)
+  before_action :find_comment, only: %i(edit update destroy)
 
   def create
-    @comment = @topic.comments.create(params[:comment].permit(:comment))
-    @comment.user_id = current_user.id if current_user
-    @comment.save
-
+    @comment = @topic.comments.build(comment_params)
     if @comment.save
       redirect_to topic_path(@topic), notice: 'Comment was created'
     else
@@ -18,16 +15,16 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if @comment.update(params[:comment].permit(:comment))
-      redirect_to topic_path(@topic), :notice => ' Update success '
+    if @comment.update(comment_params)
+      redirect_to topic_path(@topic), notice: 'Comment was updated'
     else
-      render 'edit', :notice => ' Not update '
+      render :edit, notice: 'Comment was not updated'
     end
   end
 
   def destroy
     @comment.destroy
-    redirect_to topic_path(@topic), :notice => ' Destroy success '
+    redirect_to topic_path(@topic), notice: 'Comment was deleted'
   end
 
   private
@@ -38,5 +35,9 @@ class CommentsController < ApplicationController
 
   def find_comment
     @comment = @topic.comments.find(params[:id])
+  end
+
+  def comment_params
+    params.require(:comment).permit(:comment).merge(user_id: current_user.id)
   end
 end

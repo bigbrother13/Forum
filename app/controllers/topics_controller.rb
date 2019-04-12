@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!, except: %i(index show)
 
   def index
-    @topics = Topic.all.order('created_at DESC')
+    @topics = Topic.actual
   end
 
   def show
@@ -15,7 +15,6 @@ class TopicsController < ApplicationController
 
   def create
     @topic = current_user.topics.build(topic_params)
-
     if @topic.save
       redirect_to @topic, notice: 'Topic was created'
     else
@@ -28,9 +27,9 @@ class TopicsController < ApplicationController
 
   def update
     if @topic.update(topic_params)
-      redirect_to @topic, :notice => ' Update success '
+      redirect_to @topic, notice: 'Topics was updated'
     else
-      render 'edit', :notice => ' Not update '
+      render :edit, notice: 'Topic was not updated'
     end
   end
 

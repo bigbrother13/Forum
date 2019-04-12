@@ -62,6 +62,12 @@ RSpec.describe 'Forum', type: :feature do
       expect(page).to have_content("Comment was created")
     end
 
+    it 'can see an error if comment is not valid' do
+      click_link topic2.title
+      click_button 'Create Comment'
+      expect(page).to have_content("Comment was not created")
+    end
+
     it 'can sign out' do
       click_link 'Sign out'
       expect(page).to have_content('Signed out successfully')
