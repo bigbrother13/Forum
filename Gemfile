@@ -17,6 +17,8 @@ gem 'devise'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
+gem "paperclip", "~> 6.0.0"
+gem "mimemagic"
 
 
 group :development do

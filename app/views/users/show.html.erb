@@ -1,8 +1,29 @@
 
 <h1>Profile for <%= @user.email %></h1>
 
+<%= image_tag @user.avatar.url(:medium) %>
+<%= @topic %>
 <% if current_user %>
 	<%= link_to 'Edit', edit_user_path(@user)%>
 <% end %>
 
 
+
+  <% @user.topic.each do |t| %>
+    <div class="box panel panel-default">
+      <div class="panel-body">
+        <h2>
+          <%= link_to topic.title, topic %>
+        </h2>
+
+        <p><strong><%= link_to pin.user.email, user_path(pin.user.email%></strong></p>
+        <p><%= topic.description %></p>
+        <% if topic.user == current_user %>
+         <p class="user"></p>
+        Submitted by
+        <%= topic.user.email %>
+          <p></p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>

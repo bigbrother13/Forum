@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, except: %i(show)
 
   def show
+    @user = User.find_by email: params[:email]
+    @topics = Topic.all
   end
 
   def edit
