@@ -2,9 +2,11 @@ class UsersController < ApplicationController
   before_action :find_user, only: %i(show edit update)
   before_action :authenticate_user!, except: %i(show)
 
+  def index
+    @topics = Topics.all
+  end
+
   def show
-    @user = User.find_by email: params[:email]
-    @topics = Topic.all
   end
 
   def edit

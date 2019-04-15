@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to topic_path(@topic), notice: 'Comment was created'
     else
-      render :new, notice: 'Comment was not created'
+      redirect_to topic_path(@topic), alert: @comment.errors.full_messages
     end
   end
 

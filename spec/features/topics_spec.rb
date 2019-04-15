@@ -65,7 +65,7 @@ RSpec.describe 'Forum', type: :feature do
     it 'can see an error if comment is not valid' do
       click_link topic2.title
       click_button 'Create Comment'
-      expect(page).to have_content("Comment was not created")
+      expect(page).to have_content("Comment can't be blank")
     end
 
     it 'can sign out' do
