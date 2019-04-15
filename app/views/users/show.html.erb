@@ -2,7 +2,27 @@
 <h1>Profile for <%= @user.email %></h1>
 
 <%= image_tag @user.avatar.url(:medium) %>
-<%= @topic %>
 <% if current_user %>
-	<%= link_to 'Edit', edit_user_path(@user)%>
+  <%= link_to 'Edit', edit_user_path(@user)%>
 <% end %>
+
+<div class='user'>
+  <% @user.topics.each do |topic| %>
+    <%= link_to topic.title, topic_path %>
+    <br>
+    <div>
+      Published at
+      <%= time_ago_in_words(topic.created_at) %>
+    </div>
+    <div>
+      <% topic.comments.each do |comment| %>
+        <%= comment.comment %>
+        <br>
+      <% end %>
+      <br>
+    </div>
+<% end %>
+
+
+</div>
+
