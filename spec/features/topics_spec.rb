@@ -23,9 +23,13 @@ RSpec.describe 'Forum', type: :feature do
       expect(page).to have_content('You have signed up successfully')
     end
 
-    it 'can see posts made by a certain author' do
+    it 'can see profile of a certain user' do
       first(:link, author.email).click
       expect(page).to have_content("Profile for #{author.email}")
+    end
+
+    it 'can see all comments in topics of a certain user' do
+      
     end
 
     it 'can see one topic' do

@@ -1,28 +1,54 @@
 
 <h1>Profile for <%= @user.email %></h1>
 
-<%= image_tag @user.avatar.url(:medium) %>
-<% if current_user %>
-  <%= link_to 'Edit', edit_user_path(@user)%>
-<% end %>
+<%= image_tag(@user.avatar.url(:medium)) %>
+<%= link_to('Edit', edit_user_path(@user)) if current_user %>
 
-<div class='user'>
+<div>
   <% @user.topics.each do |topic| %>
-    <%= link_to topic.title, topic_path %>
-    <br>
+    <%= link_to(topic.title, topic_path) %>
     <div>
-      Published at
-      <%= time_ago_in_words(topic.created_at) %>
+      Published at <%= time_ago_in_words(topic.created_at) %>
     </div>
-    <div>
-      <% topic.comments.each do |comment| %>
+    <% topic.comments.each do |comment| %>
+      <div>
         <%= comment.comment %>
-        <br>
-      <% end %>
-      <br>
-    </div>
-<% end %>
-
-
+      </div>
+    <% end %>
+  <% end %>
 </div>
 
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Topic</th>
+        <th>Vova</th>
+      <th>Comment</th>
+      <th>Data</th>
+  </thead>
+  <tbody>
+     <tr>
+            <td>Row 1 Data 1</td>
+            <td>Row 1 Data 2</td>
+      </tr>
+  </tbody>
+</table>
+
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Row 1 Data 1</td>
+            <td>Row 1 Data 2</td>
+        </tr>
+        <tr>
+            <td>Row 2 Data 1</td>
+            <td>Row 2 Data 2</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,12 +1,17 @@
 <h1>Topics</h1>
 
 <div class='topics'>
-  <% @topics.each do |topic| %>
-    <div><%= link_to(topic.title, topic_path(topic)) %></div>
-    <div>
-      Published at
-      <%= time_ago_in_words(topic.created_at)%>
-      <%= link_to(topic.user.email, user_path(topic.user)) %>
-    </div>
-  <% end %>
+  <div class="post">
+  	<div class="title">
+	  <% @topics.each do |topic| %>
+	    <div><%= link_to(topic.title, topic_path(topic)) %></div>
+	    <div>
+	      Published at
+	      <%= time_ago_in_words(topic.created_at)%>
+	      <%= link_to(topic.user.email, user_path(topic.user)) %>
+	    </div>
+	  <% end %>
+	</div>
+  </div>
 </div>
+
