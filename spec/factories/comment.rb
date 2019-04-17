@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :comment do
-    comment { Faker::Lorem.paragraph }
+    comment1 { Faker::Lorem.paragraph }
+    comment2 { Faker::Lorem.paragraph }
   end
 end

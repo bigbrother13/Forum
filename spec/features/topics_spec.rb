@@ -4,6 +4,8 @@ RSpec.describe 'Forum', type: :feature do
   let!(:author) { create :user }
   let!(:topic)  { create :topic, user: author }
   let!(:topic2) { create :topic, user: author }
+  let!(:comment1) { create :comment, user: author }
+  let!(:comment2) { create :comment, user: author }
 
   describe 'visitor' do
     before do
@@ -29,7 +31,10 @@ RSpec.describe 'Forum', type: :feature do
     end
 
     it 'can see all comments in topics of a certain user' do
-      
+      first(:link, author.email).click
+      expect(page).to have_content(comment1.comment)
+      expect(page).to have_content(comment2.comment)
+      expect(page).not_to have_content(comment3.comment)
     end
 
     it 'can see one topic' do
