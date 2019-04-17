@@ -4,10 +4,13 @@ RSpec.describe 'Forum', type: :feature do
   let!(:author) { create :user }
   let!(:topic)  { create :topic, user: author }
   let!(:topic2) { create :topic, user: author }
-  let!(:comment1) { create :comment, user: author }
-  let!(:comment2) { create :comment, user: author }
 
   describe 'visitor' do
+    let!(:topic3)   { create :topic }
+    let!(:comment1) { create :comment, topic: topic }
+    let!(:comment2) { create :comment, topic: topic2 }
+    let!(:comment3) { create :comment, topic: topic3 }
+
     before do
       visit root_path
     end

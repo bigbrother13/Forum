@@ -1,6 +1,8 @@
 FactoryBot.define do
   factory :comment do
-    comment1 { Faker::Lorem.paragraph }
-    comment2 { Faker::Lorem.paragraph }
+  	association :user
+    association :topic
+    comment { Faker::Lorem.paragraph }
   end
 end
+

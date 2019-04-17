@@ -4,50 +4,14 @@
 <%= image_tag(@user.avatar.url(:medium)) %>
 <%= link_to('Edit', edit_user_path(@user)) if current_user %>
 
-<table>
-  <% @user.comments.order('created_at DESC').each do |comment| %>
-    <tr>
-      <td><%= comment.topic.title %></td>
-      <td><%= comment.comment %></td>
-      <td><%= comment.topic.created_at %></td>
-    </tr>
-  <% end %>
-</table>
-
-
-
-<!-- <table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Topic</th>
-        <th>Vova</th>
-      <th>Comment</th>
-      <th>Data</th>
-  </thead>
-  <tbody>
-     <tr>
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
+<div>
+  <table>
+    <% @user.recent_responses.each do |comment| %>
+      <tr>
+        <td><%= comment.created_at.strftime('%d/%m/%Y at %I:%M%p') %></td>
+        <td><%= comment.comment %></td>
+        <td><%= comment.topic.title %></td>
       </tr>
-  </tbody>
-</table>
-
-<table id="table_id" class="display">
-    <thead>
-        <tr>
-            <th>Column 1</th>
-            <th>Column 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
-        </tr>
-        <tr>
-            <td>Row 2 Data 1</td>
-            <td>Row 2 Data 2</td>
-        </tr>
-    </tbody>
-</table>
- -->
+    <% end %>
+  </table>
+</div>
